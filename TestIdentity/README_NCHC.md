@@ -46,7 +46,7 @@ rsync -av $BASEDIR/pixeltrack-standalone/lib/cudadev/*.so \
           $BASEDIR/identity_backend/build/libtriton_identity.so \
           $BASEDIR/TritonCBE/TestIdentity/identity_fp32/1/
 cd ${BASEDIR}/TritonCBE/TestIdentity/identity_fp32/1/
-curl https://www.dropbox.com/s/o91gcntmnizh54p/data.tar.gz?dl=0 -o /tmp/data_aas.tgz 
+curl -L -o /tmp/data_aas.tgz https://www.dropbox.com/s/o91gcntmnizh54p/data.tar.gz?dl=0
 tar xzvf /tmp/data_aas.tgz
 cp $BASEDIR/pixeltrack-standalone/data/beamspot.bin data/
 
