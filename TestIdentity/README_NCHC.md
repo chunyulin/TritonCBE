@@ -58,7 +58,7 @@ cd ${BASEDIR}
 docker run -idt --rm --name triton --gpus all -v $BASEDIR:$BASEDIR --net=host nvcr.io/nvidia/tritonserver:${BASEVER}-py3
 cat <<EOF | docker exec -i triton /bin/bash
  export LD_LIBRARY_PATH=${BASEDIR}/TritonCBE/TestIdentity/identity_fp32/1:\${LD_LIBRARY_PATH}
- export LD_PRELOAD=libtbb.so.2:libFramework.so:libCUDACore.so:libCondFormats.so:libCUDADataFormats.so:pluginBeamSpotProd
+ export LD_PRELOAD=libtbb.so.2:libFramework.so:libCUDACore.so:libCondFormats.so:libCUDADataFormats.so:pluginBeamSpotProducer.so:pluginSiPixelClusterizer.so:pluginValidation.so:pluginPixelTriplets.so:pluginPixelTrackFitting.so:pluginPixelVertexFinding.so:pluginSiPixelRecHits.so
  tritonserver --backend-config=tensorflow,version=2 --model-repository=${BASEDIR}/TritonCBE/TestIdentity
 EOF
 ```
