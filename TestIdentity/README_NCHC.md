@@ -2,7 +2,7 @@
 
 - This note describes the native setup, instead of docker/singularity, for Patatrack-AAS both on TWCC x86 container and ARM-N1 bare metal node. 
 - All is based on [Yongbin's this commit](https://github.com/yongbinfeng/TritonCBE/tree/42495f5ac14647c902cef48aa72dfeecfbd708af), except that I didn't compile those inside a container but only in a native Ubuntu 20.04 with CUDA enviorment and the latest version of cmake. 
-- It turns out that the compilation works on new Triton version, say, 21.11. 
+- It turns out that the compilation even works on newer Triton version, say, 21.11. 
 
 ### Check all the repositories
 ```
@@ -46,7 +46,7 @@ rsync -av $BASEDIR/pixeltrack-standalone/lib/cudadev/*.so \
           $BASEDIR/identity_backend/build/libtriton_identity.so \
           $BASEDIR/TritonCBE/TestIdentity/identity_fp32/1/
 cd ${BASEDIR}/TritonCBE/TestIdentity/identity_fp32/1/
-curl https://www.dropbox.com/s/o91gcntmnizh54p/data.tar.gz?dl=0 /tmp/data_aas.tgz 
+curl https://www.dropbox.com/s/o91gcntmnizh54p/data.tar.gz?dl=0 -o /tmp/data_aas.tgz 
 tar xzvf /tmp/data_aas.tgz
 cp $BASEDIR/pixeltrack-standalone/data/beamspot.bin data/
 
@@ -91,3 +91,4 @@ done reading cpefast.bin
 Processing 1000 events, of which 10 concurrently, with 10 threads.
 Processed 1000 events in 7.109240e-01 seconds, throughput 1406.62 events/s.
 ```
+Strangely, if running standalone test on ARM inside the container, the event rate drops to ~1 order smaller!
